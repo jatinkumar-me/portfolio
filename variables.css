@@ -1,0 +1,22 @@
+/* variables.css */
+
+/* Colors */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f0f0f0;
+    --text-color: #333;
+}
+
+/* Font Sizes */
+:root {
+    --base-font-size: 16px;
+    --heading-font-size: 24px;
+}
+
+/* Spacing */
+:root {
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+}

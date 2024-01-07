@@ -1,0 +1,171 @@
+@import 'variables.css';
+
+ /* Reset some default styles to ensure consistency across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+/* Set a background color and default font for the entire page */
+body {
+    /* background-color: #f0f0f0; */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* General styling */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Style buttons */
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+section {
+    margin-top: 2rem;
+}
+
+hr {
+    border-top: 1px solid #EEEEEE;
+}
+
+/*
+*
+* NAVBAR STYLES
+*
+* */
+.navbar {
+    top: 0;
+    position: fixed;
+    color: black;
+    background: linear-gradient(white 15%, transparent);
+}
+
+.nav-list:before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    height: 7rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.95;
+    backdrop-filter: blur(15px);
+    mask: linear-gradient(180deg, white 35%, transparent);
+    transition: 1s;
+  }
+
+.nav-list:hover::before {
+    opacity: 1;
+}
+
+.nav-list {
+    text-transform: uppercase;
+    height: 100vh;
+    /* text-orientation: sideways; */
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding: 0 2rem;
+    gap: 2rem;
+}
+
+.nav-list a {
+    text-decoration: none;
+}
+
+/*
+*
+* HERO SECTION STYLES
+*
+*/
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 2rem 0;
+}
+
+.main-text {
+    font-size: 10rem;
+    line-height: 8rem;
+    padding: 1rem 0;
+}
+
+/* Create a simple responsive flex layout*/
+.container {
+    max-width: 80rem;
+    display: flex;
+}
+
+.main-container {
+    max-width: calc(min(50rem, 85vw));
+    margin: auto;
+}
+
+/* Style a card component */
+.card {
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*
+*
+* Responsive Media Queries 
+*
+* */
+
+/* Medium screen size */
+@media screen and (max-width: 80rem) {
+    .nav-list {
+        writing-mode: vertical-lr;
+        flex-direction: row;
+        text-orientation: sideways;
+    }
+}
+
+/* Small screen size */
+@media screen and (max-width: 60rem) {
+    /* Adjust styles for smaller screens */
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        margin: auto;
+        position: sticky;
+        top: 0;
+    }
+
+    .nav-list {
+        height: unset;
+        flex-direction: row;
+        justify-content: flex-start;
+        writing-mode: inherit;
+        text-orientation: inherit;
+        padding: 1rem 0;
+        max-width: calc(min(50rem, 85vw));
+        margin: auto;
+    }
+}
