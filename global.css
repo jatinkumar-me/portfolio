@@ -105,10 +105,42 @@ hr {
     margin: 2rem 0;
 }
 
+.greeting-line {
+    font-size: 1.6rem;
+}
+
 .main-text {
     font-size: 10rem;
     line-height: 8rem;
     padding: 1rem 0;
+}
+
+.hand-shake {
+    position: relative;
+    transform-origin: top 0;
+}
+
+/**
+* handwave animation
+* credit: (https://codepen.io/jakejarvis/pen/pBZWZw)
+*/
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(14.0deg) }
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }
+  100% { transform: rotate( 0.0deg) }
+}
+
+.hero-section:hover .hand-shake {
+    animation-name: wave-animation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transform-origin: 70% 70%;
+    display: inline-block;
 }
 
 /* Create a simple responsive flex layout*/
