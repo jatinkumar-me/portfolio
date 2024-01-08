@@ -192,4 +192,10 @@ hr {
         max-width: calc(min(50rem, 85vw));
         margin: auto;
     }
+
+    .main-text {
+        font-size: 6rem;
+        line-height: 5.0rem;
+        padding: 1rem 0;
+    }
 }
