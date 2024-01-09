@@ -97,7 +97,7 @@ hr {
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.8em;
     padding: 0 2rem;
     gap: 2rem;
 }
@@ -112,7 +112,7 @@ hr {
 *
 */
 .hero-section {
-    min-height: 80vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -124,14 +124,14 @@ hr {
 }
 
 .main-text {
-    font-size: 10rem;
-    line-height: 8rem;
+    font-size: 8rem;
+    line-height: 6.5rem;
     padding: 1rem 0;
 }
 
 .hand-shake {
-    position: relative;
-    transform-origin: top 0;
+    transform-origin: 70% 70%;
+    display: inline-block;
 }
 
 /**
@@ -153,19 +153,16 @@ hr {
     animation-name: wave-animation;
     animation-duration: 2s;
     animation-iteration-count: infinite;
-    transform-origin: 70% 70%;
-    display: inline-block;
-}
-
-/* Create a simple responsive flex layout*/
-.container {
-    max-width: 80rem;
-    display: flex;
 }
 
 .main-container {
-    max-width: calc(min(50rem, 85vw));
+    max-width: calc(min(45rem, 85vw));
     margin: auto;
+}
+
+    display: flex;
+}
+
 }
 
 /* Style a card component */
