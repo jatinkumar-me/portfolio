@@ -52,12 +52,9 @@ button:hover {
     background-color: #0056b3;
 }
 
-section {
-    margin-top: 2rem;
-}
-
 hr {
     border-top: 1px solid #EEEEEE;
+    margin: 1rem 0;
 }
 
 /*
