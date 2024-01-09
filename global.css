@@ -64,6 +64,7 @@ hr {
 * */
 .navbar {
     top: 0;
+    z-index: 100;
     position: fixed;
     color: black;
     background: linear-gradient(white 15%, transparent);
