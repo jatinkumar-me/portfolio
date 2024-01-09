@@ -160,9 +160,47 @@ hr {
     margin: auto;
 }
 
-    display: flex;
+/* 
+* Project cards 
+* */
+.projects {
+    z-index: -1;
+    --auto-grid-min-size: 16rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    grid-gap: 1rem;
 }
 
+.project {
+    padding: 1rem;
+    /* margin: 1.0rem 0; */
+    background: var(--background-color-transparent);
+    box-shadow: 0 2px 32px 0 rgba( 31, 38, 135, 0.1 );
+    backdrop-filter: blur( 8px );
+    -webkit-backdrop-filter: blur( 8.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.project-tags{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.tag {
+    font-size: 0.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    padding: 0.2rem 0.5rem;
+    margin-right: 0.1rem;
+    margin-bottom: 0.2rem;
 }
 
 /* Style a card component */
