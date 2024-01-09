@@ -21,6 +21,9 @@
     --spacing-large: 24px;
 }
 
+html {
+    font-size: var(--base-font-size);
+}
  /* Reset some default styles to ensure consistency across browsers */
 * {
     margin: 0;
