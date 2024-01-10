@@ -41,7 +41,6 @@
       </section>
 
       <hr>
-
       <section id="about" class="about">
         <h2>About me</h2>
         <p>
@@ -101,14 +100,14 @@
           </ul>
         </ol>
       </section>
-        <button>hello world</button>
+      <button>hello world</button>
 
       <a
         href="https://raw.githubusercontent.com/jatinkumar-me/my-resume/01ef38ecdf5b620ab4839810040b001bc32f2efe/resume.pdf">Download
         resume</a>
     </main>
 
-    <footer>
+    <footer id="contact-footer">
       <h2>Contact me:</h2>
       <address id="contact">
         <a href="https://github.com/jatinkumar-me" target="_blank">jatinkumar-me</a>
@@ -120,22 +119,22 @@
   </div>
 
   <script type="x-shader/x-vertex" id="vertexshader">
-			attribute float scale;
-			void main() {
-				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-				gl_PointSize = scale * ( 300.0 / - mvPosition.z );
-				gl_Position = projectionMatrix * mvPosition;
-			}
+        attribute float scale;
+        void main() {
+                vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+                gl_PointSize = scale * ( 300.0 / - mvPosition.z );
+                gl_Position = projectionMatrix * mvPosition;
+        }
   </script>
   <script type="x-shader/x-fragment" id="fragmentshader">
-			uniform vec3 color;
-			void main() {
-				if ( length( gl_PointCoord - vec2( 0.5, 0.5 ) ) > 0.475 ) discard;
-				gl_FragColor = vec4( color, 1.0 );
-			}
+        uniform vec3 color;
+        void main() {
+                if ( length( gl_PointCoord - vec2( 0.5, 0.5 ) ) > 0.475 ) discard;
+                gl_FragColor = vec4( color, 1.0 );
+        }
   </script>
   <script type="module" src="/src/main.ts"></script>
-  <script type="module" src="src/background.ts"></script>
+  <!-- <script type="module" src="src/background.ts"></script> -->
 </body>
 
 </html>
