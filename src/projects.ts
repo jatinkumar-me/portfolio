@@ -6,6 +6,7 @@ type Repository = {
     stargazers_count: number;
     forks_count: number;
     url: string;
+    html_url: string;
     language: string;
     topics: string[];
 }
@@ -54,7 +55,7 @@ async function fetchProjectMarkup(repoURL: string) {
     }
 }
 
-function showProjectList(projectNames: Set<string>, repositories: Repository[]) {
+function showProjectList(projectNames: Map<string, string>, repositories: Repository[]) {
     const projectSection = document.getElementById('projects');
     if (!projectSection) {
         console.error('Project section not present in DOM');
@@ -70,20 +71,53 @@ function showProjectList(projectNames: Set<string>, repositories: Repository[]) 
             <h3 class='project-name'>${repository.name}</h3>
             <p class='project-description'>${repository.description}</p>
             <div class='project-tags'>${repository.topics.map((topic) => `<span class='tag'>${topic}</span>`).join('\n')}</div>
+            <p><a href='${projectNames.get(repository.name)}' target='_blank'>Live link</a> • <a href='${repository.html_url}' target='_blank'>Github</a></p>
         `;
+
+        const projectDialog = document.createElement('dialog');
+        projectDialog.classList.add('project-dialog');
+        projectDialog.id = `${repository.name}-dialog`;
+        projectDialog.innerHTML = `
+              <button autofocus id="${repository.name}-dialog-close" class="dialog-close-button">Close</button>
+              <div class='markup-loading' id='${repository.name}-loading'>Loading...</div>
+        `
         projectSection.appendChild(projectDiv);
+        projectSection.appendChild(projectDialog);
+
+        const closeButton = document.getElementById(`${repository.name}-dialog-close`) as HTMLButtonElement;
+
+        if (!closeButton) {
+            console.warn('dialog not rendered');
+            return;
+        }
+        projectDiv.addEventListener("click", async () => {
+            projectDialog.showModal();
+            const markup = await fetchProjectMarkup(repository.url);
+            if (!markup) {
+                return;
+            }
+
+            const loadingNode = document.getElementById(`${repository.name}-loading`);
+            if (!loadingNode) {
+                return;
+            }
+            loadingNode.innerHTML = markup;
+        });
+
+        closeButton.addEventListener("click", () => {
+            projectDialog.close();
+        });
     });
 }
 
-const projectListToShow = new Set<string>([
-    'blog-app',
-    'calculator',
-    'Discourse',
-    'type-learn',
-    'exploding-kittens',
-    'social-book',
-    'type-learn'
-]);
+const projectListToShow = new Map<string, string>();
+projectListToShow.set('blog-app', 'https://blog-app-jatin.netlify.app/');
+projectListToShow.set('calculator', 'https://jatinkumar-me.github.io/calculator');
+projectListToShow.set('Discourse', 'https://discourse-app.netlify.app/');
+projectListToShow.set('type-learn', 'https://type-learn.netlify.app/');
+projectListToShow.set('exploding-kittens', 'https://exploding-kittens.netlify.app/');
+projectListToShow.set('type-learn', 'https://type-learn.netlify.app/');
+projectListToShow.set('pinterest-clone-assignment', 'https://pinterest-clone-assignment.netlify.app/')
 
 export default async function() {
     const repositories = await fetchProjectsFromGithub();
