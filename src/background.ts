@@ -1,9 +1,12 @@
 import * as THREE from 'three';
+import { BokehPass, EffectComposer, OutputPass, RenderPass } from 'three/examples/jsm/Addons.js';
 
-const SEPARATION = 150, AMOUNTX = 30, AMOUNTY = 30;
+const SEPARATION = 70, AMOUNTX = 50, AMOUNTY = 50;
+const isAnimate = true;
+const isDarkMode = false;
 
 let container: HTMLDivElement;
-let camera: THREE.PerspectiveCamera, scene: THREE.Scene, renderer: THREE.Renderer;
+let camera: THREE.PerspectiveCamera, scene: THREE.Scene, renderer: THREE.WebGLRenderer;
 
 let particles: THREE.Points, count = 0;
 
@@ -11,6 +14,13 @@ let mouseX = 0, mouseY = -240;
 
 let windowHalfX = window.innerWidth / 2;
 let windowHalfY = window.innerHeight / 2;
+
+type Postprocessing = {
+    bokeh?: BokehPass,
+    composer?: EffectComposer
+};
+
+let postprocessing: Postprocessing  = {};
 
 init();
 animate();
@@ -23,7 +33,7 @@ function init() {
     camera.position.z = 1000;
 
     scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xffffff );
+    scene.background = new THREE.Color(0xffffff);
 
     const numParticles = AMOUNTX * AMOUNTY;
 
@@ -57,7 +67,7 @@ function init() {
     }
     const material = new THREE.ShaderMaterial({
         uniforms: {
-            color: { value: new THREE.Color(0xf0f0f0) },
+            color: { value: new THREE.Color(0xededed) },
         },
         vertexShader: vertexShader.textContent,
         fragmentShader: fragmentShader.textContent,
@@ -71,6 +81,8 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
     renderer.domElement.classList.add('background-canvas');
+
+    initPostprocessing();
 
     container.style.touchAction = 'none';
     window.addEventListener('pointermove', onPointerMove);
@@ -86,6 +98,7 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
 
     renderer.setSize(window.innerWidth, window.innerHeight);
+    postprocessing.composer?.setSize(window.innerWidth, window.innerHeight);
 }
 
 function onPointerMove(event: PointerEvent) {
@@ -95,8 +108,32 @@ function onPointerMove(event: PointerEvent) {
 }
 
 function animate() {
+    if (!isAnimate) {
+        return;
+    }
     requestAnimationFrame(animate);
     render();
+}
+
+function initPostprocessing() {
+    const renderPass = new RenderPass(scene, camera);
+
+    const bokehPass = new BokehPass(scene, camera, {
+        focus: 1800,
+        aperture: 0.3 * 0.00001,
+        maxblur: 0.02
+    });
+
+    const outputPass = new OutputPass();
+
+    const composer = new EffectComposer(renderer);
+
+    composer.addPass(renderPass);
+    composer.addPass(bokehPass);
+    composer.addPass(outputPass);
+
+    postprocessing.composer = composer;
+    postprocessing.bokeh = bokehPass;
 }
 
 function render() {
@@ -124,7 +161,8 @@ function render() {
     particles.geometry.attributes.position.needsUpdate = true;
     particles.geometry.attributes.scale.needsUpdate = true;
 
-    renderer.render(scene, camera);
+    // renderer.render(scene, camera);
+    postprocessing.composer?.render(0.1);
 
     count += 0.05;
 }
