@@ -40,16 +40,23 @@ body {
 
 /* Style buttons */
 button {
-    background-color: var(--primary-color);
     color: #fff;
-    padding: 10px 15px;
+    padding: 0.2rem 0.5rem;
     border: none;
     cursor: pointer;
+    border-radius: 0.5rem;
     transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: var(--text-color);
+}
+
+button:active {
+    background-color: var(--text-color-light);
 }
 
 hr {
@@ -226,6 +233,15 @@ li:not(nav li) {
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     padding: 2rem;
+}
+
+.dialog-close-button {
+    float: right;
+    position: sticky;
+    top: 0;
+    background: rgba(255, 0, 0, 1);
+    box-shadow: 0 2px 8px 0 rgba( 31, 38, 32, 0.3 );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 

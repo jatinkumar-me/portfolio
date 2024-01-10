@@ -78,7 +78,7 @@ function showProjectList(projectNames: Map<string, string>, repositories: Reposi
         projectDialog.classList.add('project-dialog');
         projectDialog.id = `${repository.name}-dialog`;
         projectDialog.innerHTML = `
-              <button autofocus id="${repository.name}-dialog-close" class="dialog-close-button">Close</button>
+              <button autofocus id="${repository.name}-dialog-close" class="dialog-close-button">✕ Close</button>
               <div class='markup-loading' id='${repository.name}-loading'>Loading...</div>
         `
         projectSection.appendChild(projectDiv);
