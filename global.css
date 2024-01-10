@@ -5,7 +5,10 @@
     --secondary-color: #6c757d;
     --background-color: #f0f0f0;
     --background-color-transparent: rgba(255, 255, 255, 0.10);
+    --background-color-transparent-light: rgba(255, 255, 255, 0.4);
+    --background-color-darker: rgba(0, 0, 0, 0.1);
     --text-color: #333;
+    --text-color-light: rgba(0, 0, 0, 0.2);
 }
 
 /* Font Sizes */
@@ -23,6 +26,7 @@
 
 html {
     font-size: var(--base-font-size);
+    scroll-behavior: smooth;
 }
  /* Reset some default styles to ensure consistency across browsers */
 * {
@@ -70,6 +74,28 @@ h2 {
 
 li:not(nav li) {
     margin-left: 1.5rem;
+}
+
+p {
+    margin-top: 1rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+code:not(pre code) {
+    background: var(--background-color-transparent-light);
+    border: 1px solid var(--text-color-light);
+    border-radius: 5px;
+    padding: 1px 2px;
+}
+
+pre {
+    background: var(--background-color-transparent-light);
+    border: 1px solid var(--text-color-light);
+    border-radius: 5px;
+    padding: 1px 2px;
 }
 
 /*
