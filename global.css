@@ -149,6 +149,20 @@ li:not(nav li) {
     display: inline-block;
 }
 
+.quicklinks {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1rem;
+    gap: 1.5rem;
+}
+
+.quicklink {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
 /**
 * handwave animation
 * credit: (https://codepen.io/jakejarvis/pen/pBZWZw)
@@ -211,8 +225,8 @@ li:not(nav li) {
 }
 .tag {
     font-size: 0.8rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--text-color-light);
+    background: var(--background-color-darker);
     border-radius: 2rem;
     padding: 0.2rem 0.5rem;
     margin-right: 0.1rem;
@@ -253,6 +267,20 @@ li:not(nav li) {
     position: fixed;
     top: 0;
     z-index: -1;
+}
+
+/*
+* Contact section styles 
+**/
+#contact {
+    font-style: normal;
+    display: flex;
+    width: 100%;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    
 }
 
 /*
