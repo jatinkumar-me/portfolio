@@ -212,6 +212,22 @@ li:not(nav li) {
     margin-bottom: 0.2rem;
 }
 
+/*
+* Project-dialog
+* */
+
+.project-dialog {
+    margin: auto;
+    max-width: calc(min(50rem, 87vw));
+    background: var(--background-color-transparent);
+    box-shadow: 0 2px 32px 0 rgba( 31, 38, 135, 0.1 );
+    backdrop-filter: blur( 15px );
+    -webkit-backdrop-filter: blur( 15px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 2rem;
+}
+
 
 /*
 * Background canvas 
