@@ -120,10 +120,10 @@ li:not(nav li) {
 *
 */
 .hero-section {
-    min-height: 60vh;
+    min-height: 95vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     margin: 2rem 0;
 }
 
@@ -193,6 +193,7 @@ li:not(nav li) {
     align-items: flex-start;
     justify-content: space-between;
     gap: 0.5rem;
+    cursor: pointer;
 }
 
 .project-tags{
