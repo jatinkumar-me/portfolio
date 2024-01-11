@@ -3,7 +3,7 @@ import { BokehPass, EffectComposer, OutputPass, RenderPass } from 'three/example
 
 const SEPARATION = 70, AMOUNTX = 50, AMOUNTY = 50;
 const isAnimate = true;
-const isDarkMode = false;
+// const isDarkMode = false;
 
 let container: HTMLDivElement;
 let camera: THREE.PerspectiveCamera, scene: THREE.Scene, renderer: THREE.WebGLRenderer;
@@ -13,7 +13,6 @@ let particles: THREE.Points, count = 0;
 let mouseX = 0, mouseY = -240;
 
 let windowHalfX = window.innerWidth / 2;
-let windowHalfY = window.innerHeight / 2;
 
 type Postprocessing = {
     bokeh?: BokehPass,
@@ -92,7 +91,6 @@ function init() {
 
 function onWindowResize() {
     windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
 
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
