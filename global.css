@@ -168,6 +168,7 @@ pre {
     opacity: 0.95;
     backdrop-filter: blur(15px);
     mask: linear-gradient(90deg, var(--background-color) 35%, transparent);
+    -webkit-mask-attachment: linear-gradient(90deg, var(--background-color) 35%, transparent);
     transition: 1s;
 }
 
@@ -389,6 +390,7 @@ pre {
         opacity: 0.95;
         backdrop-filter: blur(15px);
         mask: linear-gradient(180deg, var(--background-color) 35%, transparent);
+        -webkit-mask-attachment: linear-gradient(180deg, var(--background-color) 35%, transparent);
         transition: opacity 1s;
       }
 
@@ -408,3 +410,4 @@ pre {
         padding: 1rem 0;
     }
 }
+
