@@ -29,7 +29,6 @@ let particles: THREE.Points, count = 0;
 let mouseX = 0, mouseY = -240;
 
 let windowHalfX = window.innerWidth / 2;
-let windowHalfY = window.innerHeight / 2;
 
 type Postprocessing = {
     bokeh?: BokehPass,
@@ -123,7 +122,6 @@ function init() {
 
 function onWindowResize() {
     windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
 
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
