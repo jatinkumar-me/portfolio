@@ -161,7 +161,7 @@ pre {
     position: absolute;
     height: 100vh;
     /* border: 2px solid red; */
-    width: 20rem;
+    width: 15rem;
     top: 0;
     left: 0;
     right: 0;
@@ -382,7 +382,7 @@ pre {
         z-index: -1;
         content: '';
         position: absolute;
-        height: 7rem;
+        height: 3.7rem;
         width: 100%;
         top: 0;
         left: 0;
