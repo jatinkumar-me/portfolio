@@ -1,11 +1,27 @@
 import * as THREE from 'three';
 import { BokehPass, EffectComposer, OutputPass, RenderPass } from 'three/examples/jsm/Addons.js';
 
+type ColorScheme = {
+    background: THREE.Color;
+    foreground: THREE.Color;
+}
+
 const SEPARATION = 70, AMOUNTX = 50, AMOUNTY = 50;
 const isAnimate = true;
-const isDarkMode = false;
 
-let container: HTMLDivElement;
+const LIGHT_THEME_COLORS: ColorScheme = {
+    background: new THREE.Color(0xffffff),
+    foreground: new THREE.Color(0xededed),
+}
+
+const DARK_THEME_COLORS: ColorScheme = {
+    background: new THREE.Color(0x1c1c1c),
+    foreground: new THREE.Color(0x2b2b2b),
+}
+
+let colorScheme: ColorScheme = LIGHT_THEME_COLORS;
+
+let container: HTMLElement | null;
 let camera: THREE.PerspectiveCamera, scene: THREE.Scene, renderer: THREE.WebGLRenderer;
 
 let particles: THREE.Points, count = 0;
@@ -20,20 +36,35 @@ type Postprocessing = {
     composer?: EffectComposer
 };
 
-let postprocessing: Postprocessing  = {};
+let postprocessing: Postprocessing = {};
 
 init();
 animate();
 
+function changeColorMode(newColorScheme: ColorScheme) {
+    /* 
+     * Yes, we are creating a new web GL context every time the theme is changed, 
+     * currently there is no way to destroy a created web-gl context, 
+     * we have to trust the garbage collector to clear it for us.
+     * */    
+    colorScheme = newColorScheme;
+    init();
+}
+
 function init() {
+    container = document.getElementById('canvas-container');
+    if (container) {
+        container.remove();
+    }
     container = document.createElement('div');
+    container.id = 'canvas-container';
     document.body.appendChild(container);
 
     camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = 1000;
 
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff);
+    scene.background = colorScheme.background;
 
     const numParticles = AMOUNTX * AMOUNTY;
 
@@ -67,7 +98,7 @@ function init() {
     }
     const material = new THREE.ShaderMaterial({
         uniforms: {
-            color: { value: new THREE.Color(0xededed) },
+            color: { value: colorScheme.foreground },
         },
         vertexShader: vertexShader.textContent,
         fragmentShader: fragmentShader.textContent,
@@ -166,3 +197,18 @@ function render() {
 
     count += 0.05;
 }
+
+//Dark mode button.
+const darkmodeToggleButton = document.getElementById('darkmode-toggle-button') as HTMLButtonElement;
+
+darkmodeToggleButton.addEventListener('click', () => {
+    const body = document.body;
+    const isDarkMode = body.classList.contains('darkmode');
+    body.classList.toggle('darkmode');
+
+    if (isDarkMode) {
+        changeColorMode(LIGHT_THEME_COLORS);
+    } else {
+        changeColorMode(DARK_THEME_COLORS);
+    }
+})
