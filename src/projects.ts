@@ -1,4 +1,5 @@
 import { marked } from "marked";
+import { emojify } from "node-emoji";
 
 type Repository = {
     name: string;
@@ -48,7 +49,8 @@ async function fetchProjectMarkup(repoURL: string) {
             return;
         }
 
-        const markup = await marked(atob(data.content));
+        let markup = await marked(atob(data.content));
+        markup = markup.replace(/(:.*:)/g, (match) => emojify(match));
         return markup;
     } catch (error) {
         console.error('Error fetching markup', error);
