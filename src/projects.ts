@@ -129,6 +129,5 @@ export default async function() {
     if (!repositories) {
         return;
     }
-    console.log(repositories);
     showProjectList(projectListToShow, repositories)
 }
