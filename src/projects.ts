@@ -92,7 +92,10 @@ function showProjectList(projectNames: Map<string, string>, repositories: Reposi
             console.warn('dialog not rendered');
             return;
         }
-        projectDiv.addEventListener("click", async () => {
+        projectDiv.addEventListener("click", async (event) => {
+            if ((event.target as HTMLElement).tagName === 'A') {
+                return;
+            }
             projectDialog.showModal();
             const markup = await fetchProjectMarkup(repository.url);
             if (!markup) {
