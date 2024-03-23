@@ -123,6 +123,8 @@ projectListToShow.set('type-learn', 'https://type-learn.netlify.app/');
 projectListToShow.set('exploding-kittens', 'https://exploding-kittens.netlify.app/');
 projectListToShow.set('type-learn', 'https://type-learn.netlify.app/');
 projectListToShow.set('pinterest-clone-assignment', 'https://pinterest-clone-assignment.netlify.app/')
+projectListToShow.set('collective-canvas', 'https://collective-canvas.netlify.app/')
+projectListToShow.set('go-lru', 'https://github.com/jatinkumar-me/go-lru')
 
 export default async function() {
     const repositories = await fetchProjectsFromGithub();
