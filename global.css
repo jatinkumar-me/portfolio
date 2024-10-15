@@ -350,6 +350,12 @@ pre {
 *
 * */
 
+.experience > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 /* Medium screen size */
 @media screen and (max-width: 80rem) {
     .nav-list {
